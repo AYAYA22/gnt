@@ -180,7 +180,7 @@ contract GNT is Ownable{
             
             user_up.refReward += reward;
             reward = 0;
-            if(upline == feeReceivers) break;
+            if(upline == defaultRefer) break;
             upline = userInfo[upline].referrer;
         }
 
@@ -244,7 +244,7 @@ contract GNT is Ownable{
             user_up.refReward += reward;
             reward = 0;
             
-            if(upline == feeReceivers) break;
+            if(upline == defaultRefer) break;
             upline = userInfo[upline].referrer;
         }
 
