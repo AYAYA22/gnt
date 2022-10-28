@@ -148,7 +148,7 @@ contract GNT is Ownable{
         }
         
         UserInfo storage dev = userInfo[feeReceivers];
-        dev.withdrawable = packagePrice[_packageID]* uint256(feePercents) / baseDivider;
+        dev.withdrawable += packagePrice[_packageID]* uint256(feePercents) / baseDivider;
 
         OrderInfo storage order = orderInfos[msg.sender];
         order.start = block.timestamp + freezeDay;
@@ -197,7 +197,7 @@ contract GNT is Ownable{
         usdt.transferFrom(msg.sender, address(this), packagePrice[_packageID]);
 
         UserInfo storage dev = userInfo[feeReceivers];
-        dev.withdrawable = packagePrice[_packageID]* uint256(feePercents) / baseDivider;
+        dev.withdrawable += packagePrice[_packageID]* uint256(feePercents) / baseDivider;
 
         OrderInfo storage order = orderInfos[msg.sender];
         uint256 teamDep = packagePrice[_packageID];
