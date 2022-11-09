@@ -82,13 +82,14 @@ contract GNT is Ownable{
     function getDownlineDep(address _account) external view returns 
         (uint256[] memory _deposit) 
     {   
-        uint256[] memory dep = new uint256[](3);
+        uint256[] memory dep = new uint256[](4);
         uint256 lvlDep;
+        dep[0] = orderInfos[_account].maxpack;
         for(uint256 i = 0; i < referDepth; i++){
             for(uint256 j = 0; j < teamUsers[_account][i].length; j++){
-                lvlDep += userInfo[teamUsers[_account][i][j]].totalDep;
+                lvlDep += orderInfos[teamUsers[_account][i][j]].maxpack;
             }
-            dep[i] = lvlDep;
+            dep[i+1] = lvlDep;
             lvlDep = 0;
         }
         return dep;
